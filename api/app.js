@@ -132,6 +132,14 @@ app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
  * Delete /lists/:listId/tasks
  * Proposito: Elimina una tarea especifica
  */
+app.delete("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.findOneAndDelete({
+        _id: req.params.taskId,
+        _listId: req.params.listId,
+    }).then((removedTaskDoc) => {
+        res.send(removedTaskDoc);
+    });
+});
 
 app.listen(3000, () => {
     console.log("El servidor ya esta escuchando peticiones!! ;)");
