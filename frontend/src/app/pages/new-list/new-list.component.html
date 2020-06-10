@@ -3,12 +3,13 @@
         <h1 class="title">Crea una nueva lista</h1>
         <div class="field is-grouped">
             <p class="control is-expanded">
-                <input class="input is-medium" type="text" placeholder="Ingresa el nombre de tu lista">
+                <input #listTitleInput class="input is-medium" type="text" placeholder="Ingresa el nombre de tu lista">
             </p>
         </div>
+        <br/>
         <div class="buttons is-right">
             <button class="button is-medium" [routerLink]="['/']" routerLinkActive="router-link-active">Volver</button>
-            <button class="button is-medium is-primary">Crear</button>
+            <button class="button is-medium is-primary" (click)='createNewList(listTitleInput.value)'>Crear</button>
         </div>
     </div>
 </div>
