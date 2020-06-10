@@ -17,3 +17,7 @@ mongoose
 //Para que no me aparezcan advertencias innecesarias por deprecation
 mongoose.set("useCreateIndex", true);
 mongoose.set("useFindAndModify", false);
+
+module.exports = {
+    mongoose,
+};
