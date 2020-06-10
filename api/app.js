@@ -95,6 +95,19 @@ app.get("/lists/:listId/tasks", (req, res) => {
 });
 
 /**
+ * Get /lists/:listId/tasks/:taskId
+ * Proposito:Devuelve una tarea en particular
+ */
+app.get("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.find({
+        _id: req.params.taskId,
+        _listId: req.params.listId,
+    }).then((tasks) => {
+        res.send(tasks);
+    });
+});
+
+/**
  * Get /lists/:listId/tasks
  * Proposito: Obtiene todas las tareas de una lista
  */
@@ -138,6 +151,18 @@ app.delete("/lists/:listId/tasks/:taskId", (req, res) => {
         _listId: req.params.listId,
     }).then((removedTaskDoc) => {
         res.send(removedTaskDoc);
+    });
+});
+
+/**
+ * Delete  /lists/:listId/tasks
+ * Proposito: Eliminar todas las tareas de una lista
+ */
+app.delete("/lists/:listId/tasks", (req, res) => {
+    Task.findOneAndDelete({
+        _listId: req.params.listId,
+    }).then((removedTasksDoc) => {
+        res.send(removedTasksDoc);
     });
 });
 
