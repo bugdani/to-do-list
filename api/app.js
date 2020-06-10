@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 
+//Importo los modelos para ser conmidos por los metodos
+const { List } = require("./db/model/list.model");
+const { Task } = require("./db/model/task.model");
+
 /**
  * Get /lists
  * Proposito: Devuelve todas las listas
