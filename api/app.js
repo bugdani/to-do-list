@@ -113,6 +113,20 @@ app.post("/lists/:listId/tasks", (req, res) => {
  * Patch /lists/:listId/tasks
  * Proposito: Modifica una tarea especifica
  */
+app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.findOneAndUpdate({
+            _id: req.params.taskId,
+            _listId: req.params.listId,
+        }, {
+            $set: req.body,
+        })
+        .then(() => {
+            res.send({ message: "updated successfully" });
+        })
+        .catch((err) => {
+            res.send({ message: err });
+        });
+});
 
 /**
  * Delete /lists/:listId/tasks
