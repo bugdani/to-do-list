@@ -74,7 +74,13 @@ app.patch("/lists/:id", (req, res) => {
  * Delete /lists
  * Proposito: Para eliminar una lista especifica
  */
-app.delete("/lists/:id", (req, res) => {});
+app.delete("/lists/:id", (req, res) => {
+    List.findOneAndDelete({
+        _id: req.params.id,
+    }).then((removedListDoc) => {
+        res.send(removedListDoc);
+    });
+});
 
 app.listen(3000, () => {
     console.log("El servidor ya esta escuchando peticiones!! ;) ");
