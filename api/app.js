@@ -19,6 +19,12 @@ app.post("/lists", (req, res) => {});
  */
 app.path("/lists/:id", (req, res) => {});
 
+/**
+ * Delete /lists
+ * Proposito: Para eliminar una lista especifica
+ */
+app.delete("/lists/:id", (req, res) => {});
+
 app.listen(3000, () => {
     console.log("El servidor ya esta escuchando peticiones!! ;) ");
 });
