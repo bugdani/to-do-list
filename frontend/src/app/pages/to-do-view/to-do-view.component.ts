@@ -10,12 +10,4 @@ export class ToDoViewComponent implements OnInit {
   constructor(private todoService: ToDoService) {}
 
   ngOnInit() {}
-
-  createNewList(title: string) {
-    this.todoService
-      .createList('Lista creada desde front')
-      .subscribe((response) => {
-        console.log(response);
-      });
-  }
 }
