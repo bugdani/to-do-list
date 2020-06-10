@@ -7,7 +7,11 @@ const { List, Task } = require("./db/model");
  * Get /lists
  * Proposito: Devuelve todas las listas
  */
-app.get("/lists", (req, res) => {});
+app.get("/lists", (req, res) => {
+    List.find({}).then((lists) => {
+        res.send(lists);
+    });
+});
 
 /**
  * Post /lists
