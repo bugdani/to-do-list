@@ -10,4 +10,8 @@ export class ToDoService {
   createList(title: string) {
     return this.webRequestService.post('lists', { title });
   }
+
+  getLists() {
+    return this.webRequestService.get('lists');
+  }
 }
