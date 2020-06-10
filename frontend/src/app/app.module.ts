@@ -7,9 +7,10 @@ import { ToDoViewComponent } from './pages/to-do-view/to-do-view.component';
 
 //Servicios
 import { HttpClientModule } from '@angular/common/http';
+import { NewListComponent } from './pages/new-list/new-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ToDoViewComponent],
+  declarations: [AppComponent, ToDoViewComponent, NewListComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
