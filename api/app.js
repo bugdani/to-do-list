@@ -82,6 +82,90 @@ app.delete("/lists/:id", (req, res) => {
     });
 });
 
+/**
+ * Get /Task
+ * Proposito: Devuelve todas las tareas de una lista
+ */
+app.get("/lists/:listId/tasks", (req, res) => {
+    Task.find({
+        _listId: req.params.listId,
+    }).then((tasks) => {
+        res.send(tasks);
+    });
+});
+
+/**
+ * Get /lists/:listId/tasks/:taskId
+ * Proposito:Devuelve una tarea en particular
+ */
+app.get("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.find({
+        _id: req.params.taskId,
+        _listId: req.params.listId,
+    }).then((tasks) => {
+        res.send(tasks);
+    });
+});
+
+/**
+ * Get /lists/:listId/tasks
+ * Proposito: Obtiene todas las tareas de una lista
+ */
+app.post("/lists/:listId/tasks", (req, res) => {
+    let newTask = Task({
+        title: req.body.title,
+        dateCreated: new Date(),
+        _listId: req.params.listId,
+    });
+    newTask.save().then((newTaskDoc) => {
+        res.send(newTaskDoc);
+    });
+});
+
+/**
+ * Patch /lists/:listId/tasks
+ * Proposito: Modifica una tarea especifica
+ */
+app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.findOneAndUpdate({
+            _id: req.params.taskId,
+            _listId: req.params.listId,
+        }, {
+            $set: req.body,
+        })
+        .then(() => {
+            res.send({ message: "updated successfully" });
+        })
+        .catch((err) => {
+            res.send({ message: err });
+        });
+});
+
+/**
+ * Delete /lists/:listId/tasks
+ * Proposito: Elimina una tarea especifica
+ */
+app.delete("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.findOneAndDelete({
+        _id: req.params.taskId,
+        _listId: req.params.listId,
+    }).then((removedTaskDoc) => {
+        res.send(removedTaskDoc);
+    });
+});
+
+/**
+ * Delete  /lists/:listId/tasks
+ * Proposito: Eliminar todas las tareas de una lista
+ */
+app.delete("/lists/:listId/tasks", (req, res) => {
+    Task.findOneAndDelete({
+        _listId: req.params.listId,
+    }).then((removedTasksDoc) => {
+        res.send(removedTasksDoc);
+    });
+});
+
 app.listen(3000, () => {
-    console.log("El servidor ya esta escuchando peticiones!! ;) ");
+    console.log("El servidor ya esta escuchando peticiones!! ;)");
 });
