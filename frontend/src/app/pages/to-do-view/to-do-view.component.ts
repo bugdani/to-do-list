@@ -32,7 +32,7 @@ export class ToDoViewComponent implements OnInit {
 
   onTaskClick(task: Task) {
     this.todoService.complete(task).subscribe((response) => {
-      console.log('modificado');
+      task.completed = !task.completed;
     });
   }
 }

@@ -22,11 +22,12 @@
                     </h1>
                 </div>
                 <!-- Task Elements -->
-                <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)">
-                    <p>{{task.title}}</p>
+                <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{'completed': task.completed }">
+                    <p>{{task.title}}<span class="tag is-danger uk-align-right is-pulled-right">hace 4 dias</span></p>
+
                 </div>
-                <button class="button circle-add-button is-primary" [routerLink]="['./new-task']" routerLinkActive="router-link-active">
-                    <img src="../../../assets/img/plus-icon.svg">
+                <button class="button circle-add-button is-primary " [routerLink]="[ './new-task'] " routerLinkActive="router-link-active ">
+                    <img src="../../../assets/img/plus-icon.svg ">
                 </button>
             </div>
         </div>
