@@ -6,6 +6,7 @@ import { NewListComponent } from './pages/new-list/new-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/lists', pathMatch: 'full' },
   { path: 'lists', component: ToDoViewComponent },
+  { path: 'lists/:listId', component: ToDoViewComponent },
   { path: 'new-list', component: NewListComponent },
 ];
 
