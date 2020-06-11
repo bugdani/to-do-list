@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +21,9 @@ export class WebRequestService {
 
   delete(uri: string) {
     return this.http.delete(`${this.ROOT_URL}/${uri}`);
+  }
+
+  patch(uri: string, payload: Object) {
+    return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
   }
 }

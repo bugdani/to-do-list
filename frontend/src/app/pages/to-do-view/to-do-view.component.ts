@@ -30,5 +30,9 @@ export class ToDoViewComponent implements OnInit {
     });
   }
 
-  onTaskClick(task) {}
+  onTaskClick(task: Task) {
+    this.todoService.complete(task).subscribe((response) => {
+      console.log('modificado');
+    });
+  }
 }
