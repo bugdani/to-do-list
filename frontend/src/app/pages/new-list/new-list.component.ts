@@ -9,12 +9,11 @@ import { ToDoService } from 'src/app/services/to-do.service';
 })
 export class NewListComponent implements OnInit {
   constructor(private todoService: ToDoService, private router: Router) {}
-
   ngOnInit(): void {}
 
   createNewList(title: string) {
     this.todoService.createList(title).subscribe((response) => {
-      this.router.navigate(['/lists']);
+      this.router.navigate(['/lists', response['_id']]);
     });
   }
 }

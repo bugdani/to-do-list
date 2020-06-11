@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'lists/:listId', component: ToDoViewComponent },
   { path: 'new-list', component: NewListComponent },
   { path: 'new-task', component: NewTaskComponent },
+  { path: 'lists/:listId/new-task', component: NewTaskComponent },
 ];
 
 @NgModule({

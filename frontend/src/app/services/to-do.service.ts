@@ -18,4 +18,8 @@ export class ToDoService {
   getTasks(listId: string) {
     return this.webRequestService.get(`lists/${listId}/tasks`);
   }
+
+  createTask(listId: string, title: string) {
+    return this.webRequestService.post(`lists/${listId}/tasks`, { title });
+  }
 }

@@ -8,6 +8,7 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./to-do-view.component.scss'],
 })
 export class ToDoViewComponent implements OnInit {
+  currentListId: string;
   lists: any;
   tasks: any;
   constructor(
@@ -18,6 +19,7 @@ export class ToDoViewComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.todoService.getTasks(params.listId).subscribe((tasks: any[]) => {
+        this.currentListId = params.listId;
         this.tasks = tasks;
       });
     });

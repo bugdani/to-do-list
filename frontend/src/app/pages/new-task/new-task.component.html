@@ -1,1 +1,15 @@
-<p>new-task works!</p>
+<div class="centered-content">
+    <div class="modal-box has-background-light">
+        <h1 class="title">Agrega una nueva tarea</h1>
+        <div class="field is-grouped">
+            <p class="control is-expanded">
+                <input #listTaskInput class="input is-medium" type="text" placeholder="Ingresa la tarea">
+            </p>
+        </div>
+        <br/>
+        <div class="buttons is-right">
+            <button class="button is-medium" [routerLink]="['/lists',listId]" routerLinkActive="router-link-active">Volver</button>
+            <button class="button is-medium is-primary" (click)='createNewTask(listTaskInput.value)'>Crear</button>
+        </div>
+    </div>
+</div>
