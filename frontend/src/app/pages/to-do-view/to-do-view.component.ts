@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoService } from 'src/app/services/to-do.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
 import { List } from 'src/app/models/list.model';
 
@@ -11,21 +11,22 @@ import { List } from 'src/app/models/list.model';
 })
 export class ToDoViewComponent implements OnInit {
   currentListId: string;
-  lists: List;
-  tasks: Task;
+  lists: List[];
+  tasks: Task[];
   constructor(
     private todoService: ToDoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.todoService.getTasks(params.listId).subscribe((tasks: Task) => {
+      this.todoService.getTasks(params.listId).subscribe((tasks: Task[]) => {
         this.currentListId = params.listId;
         this.tasks = tasks;
       });
     });
-    this.todoService.getLists().subscribe((lists: List) => {
+    this.todoService.getLists().subscribe((lists: List[]) => {
       this.lists = lists;
     });
   }
@@ -33,6 +34,21 @@ export class ToDoViewComponent implements OnInit {
   onTaskClick(task: Task) {
     this.todoService.complete(task).subscribe((response) => {
       task.completed = !task.completed;
+    });
+  }
+
+  onTaskDeleteClick(taskId: string) {
+    this.todoService
+      .deleteTask(this.currentListId, taskId)
+      .subscribe((res: any) => {
+        //this.router.navigate(['/lists', this.currentListId]);
+        this.tasks = this.tasks.filter((val) => val._id !== taskId);
+      });
+  }
+
+  onDeleteListClick() {
+    this.todoService.deleteList(this.currentListId).subscribe((res: any) => {
+      this.router.navigate(['/lists']);
     });
   }
 }
