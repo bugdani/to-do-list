@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToDoService } from 'src/app/services/to-do.service';
 
 @Component({
@@ -7,13 +8,13 @@ import { ToDoService } from 'src/app/services/to-do.service';
   styleUrls: ['./new-list.component.scss'],
 })
 export class NewListComponent implements OnInit {
-  constructor(private todoService: ToDoService) {}
+  constructor(private todoService: ToDoService, private router: Router) {}
 
   ngOnInit(): void {}
 
   createNewList(title: string) {
     this.todoService.createList(title).subscribe((response) => {
-      console.log(response);
+      this.router.navigate(['/lists']);
     });
   }
 }
