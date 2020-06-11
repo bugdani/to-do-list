@@ -15,10 +15,10 @@
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                         <div class="dropdown-content">
-                            <a href="#" class="dropdown-item">
+                            <a class="dropdown-item">
                             Editar titulo
                           </a>
-                            <a href="#" class="dropdown-item">
+                            <a class="dropdown-item" (click)='onDeleteListClick()'>
                             Eliminar lista actual
                           </a>
                         </div>
@@ -55,24 +55,20 @@
                                 <a href="#" class="dropdown-item">
                                 Ascendente
                               </a>
-                                <a href="#" class="dropdown-item">
+                                <a href="#" class="dropdown-item" (click)="onDeleteListClick()">
                                 Descendente
                               </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--Dropdown-->
-                <!-- DropDown End -->
-
-                <!-- Task Elements -->
                 <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{'completed': task.completed }">
                     <div class="task-text">
                         <p>{{task.title}}</p>
                     </div>
                     <span class="tag is-danger is-light is-pulled-right">hace 4 dias</span>
                     <div class="task-buttons">
-                        <button class="button is-danger is-pulled-right" style="margin-left: 10px;" (click)="onTaskDeleteClick(task._id)">
+                        <button class="button is-danger is-pulled-right" style="margin-left: 10px;" (click)="onDeleteTaskClick(task._id)">
                             <span class="icon is-small">
                                 <i class="fas fa-trash" aria-hidden="true"></i>
                             </span>

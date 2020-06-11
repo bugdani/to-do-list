@@ -37,7 +37,7 @@ export class ToDoViewComponent implements OnInit {
     });
   }
 
-  onTaskDeleteClick(taskId: string) {
+  onDeleteTaskClick(taskId: string) {
     this.todoService
       .deleteTask(this.currentListId, taskId)
       .subscribe((res: any) => {
