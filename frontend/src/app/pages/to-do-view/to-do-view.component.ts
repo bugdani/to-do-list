@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoService } from 'src/app/services/to-do.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Task } from 'src/app/models/task.model';
+import { List } from 'src/app/models/list.model';
 
 @Component({
   selector: 'app-to-do-view',
@@ -9,8 +11,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ToDoViewComponent implements OnInit {
   currentListId: string;
-  lists: any;
-  tasks: any;
+  lists: List;
+  tasks: Task;
   constructor(
     private todoService: ToDoService,
     private route: ActivatedRoute
@@ -18,13 +20,15 @@ export class ToDoViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.todoService.getTasks(params.listId).subscribe((tasks: any[]) => {
+      this.todoService.getTasks(params.listId).subscribe((tasks: Task) => {
         this.currentListId = params.listId;
         this.tasks = tasks;
       });
     });
-    this.todoService.getLists().subscribe((lists: any[]) => {
+    this.todoService.getLists().subscribe((lists: List) => {
       this.lists = lists;
     });
   }
+
+  onTaskClick(task) {}
 }

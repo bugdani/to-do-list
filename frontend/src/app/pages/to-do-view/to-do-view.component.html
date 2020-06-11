@@ -22,7 +22,7 @@
                     </h1>
                 </div>
                 <!-- Task Elements -->
-                <div class="task" *ngFor="let task of tasks">
+                <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)">
                     <p>{{task.title}}</p>
                 </div>
                 <button class="button circle-add-button is-primary" [routerLink]="['./new-task']" routerLinkActive="router-link-active">
