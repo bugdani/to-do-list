@@ -5,14 +5,8 @@
                 Lists
             </h1>
             <div class="list-menu">
-                <a class="list-menu-item">
-                    <p>Lista 1</p>
-                </a>
-                <a class="list-menu-item">
-                    <p>Lista 2</p>
-                </a>
-                <a class="list-menu-item">
-                    <p>Lista 3</p>
+                <a class="list-menu-item" *ngFor="let list of lists">
+                    <p>{{list.title}}</p>
                 </a>
             </div>
 
