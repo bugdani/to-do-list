@@ -20,6 +20,7 @@
 
 .to-do-list-container {
     display: flex;
+    position: relative;
     flex-direction: column;
     flex-grow: 1;
     padding: 42px;
@@ -76,4 +77,14 @@
         text-decoration: line-through;
         opacity: 0.8;
     }
+}
+
+.circle-add-button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    height: 50px;
+    width: 50px;
+    background: $primary;
+    border-radius: 50%;
 }
