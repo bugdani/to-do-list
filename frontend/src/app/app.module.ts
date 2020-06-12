@@ -9,9 +9,10 @@ import { ToDoViewComponent } from './pages/to-do-view/to-do-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewListComponent } from './pages/new-list/new-list.component';
 import { NewTaskComponent } from './pages/new-task/new-task.component';
+import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, ToDoViewComponent, NewListComponent, NewTaskComponent],
+  declarations: [AppComponent, ToDoViewComponent, NewListComponent, NewTaskComponent, ModalEditComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

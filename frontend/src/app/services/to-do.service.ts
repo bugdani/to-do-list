@@ -32,4 +32,12 @@ export class ToDoService {
       }
     );
   }
+
+  deleteList(id: string) {
+    return this.webRequestService.delete(`lists/${id}`);
+  }
+
+  deleteTask(listId: string, taskId: string) {
+    return this.webRequestService.delete(`lists/${listId}/tasks/${taskId}`);
+  }
 }
