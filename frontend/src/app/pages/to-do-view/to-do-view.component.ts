@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToDoService } from 'src/app/services/to-do.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
@@ -11,8 +11,13 @@ import { List } from 'src/app/models/list.model';
 })
 export class ToDoViewComponent implements OnInit {
   currentListId: string;
+  taskId: string;
+  isModalListActive: boolean = false;
+  isModalTaskActive: boolean = false;
+  textForModal: string;
   lists: List[];
   tasks: Task[];
+
   constructor(
     private todoService: ToDoService,
     private route: ActivatedRoute,
@@ -50,5 +55,20 @@ export class ToDoViewComponent implements OnInit {
     this.todoService.deleteList(this.currentListId).subscribe((res: any) => {
       this.router.navigate(['/lists']);
     });
+  }
+
+  toggleModalList() {
+    this.textForModal = 'lista';
+    this.isModalListActive = !this.isModalListActive;
+  }
+
+  toggleModalTask(taskId: string) {
+    this.taskId = taskId;
+    this.textForModal = 'tarea';
+    this.isModalListActive = !this.isModalListActive;
+  }
+
+  closeModal(e: any) {
+    this.isModalListActive = e;
   }
 }
