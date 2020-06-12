@@ -40,4 +40,14 @@ export class ToDoService {
   deleteTask(listId: string, taskId: string) {
     return this.webRequestService.delete(`lists/${listId}/tasks/${taskId}`);
   }
+
+  updateList(id: string, title: string) {
+    return this.webRequestService.patch(`lists/${id}`, { title });
+  }
+
+  updateTask(listId: string, taskId: string, title: string) {
+    return this.webRequestService.patch(`lists/${listId}/tasks/${taskId}`, {
+      title,
+    });
+  }
 }

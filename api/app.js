@@ -62,8 +62,30 @@ app.patch("/lists/:id", (req, res) => {
     List.findOneAndUpdate({ _id: req.params.id }, {
             $set: req.body,
         })
-        .then(() => {
-            res.send({ message: "updated successfully" });
+        .then((updateList) => {
+            res.send(updateList);
+        })
+        .catch((err) => {
+            res.send({ message: err });
+        });
+});
+
+/**
+ * Patch /lists/:listId/tasks
+ * Proposito: Modifica una tarea especifica
+ */
+app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
+    Task.findOneAndUpdate({
+            _id: req.params.taskId,
+            _listId: req.params.listId,
+        }, {
+            $set: req.body,
+        })
+        .then((updateTask) => {
+            res.send(updateTask);
+        })
+        .finally((tasks) => {
+            res.send(tasks);
         })
         .catch((err) => {
             res.send({ message: err });
@@ -120,25 +142,6 @@ app.post("/lists/:listId/tasks", (req, res) => {
     newTask.save().then((newTaskDoc) => {
         res.send(newTaskDoc);
     });
-});
-
-/**
- * Patch /lists/:listId/tasks
- * Proposito: Modifica una tarea especifica
- */
-app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
-    Task.findOneAndUpdate({
-            _id: req.params.taskId,
-            _listId: req.params.listId,
-        }, {
-            $set: req.body,
-        })
-        .then(() => {
-            res.send({ message: "updated successfully" });
-        })
-        .catch((err) => {
-            res.send({ message: err });
-        });
 });
 
 /**

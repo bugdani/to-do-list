@@ -1,19 +1,22 @@
-<div class="modal" [ngClass]="{ 'is-active' : isModalListActive }">
-
-    <div class="modal-background" (click)='closeModal()'></div>
+<div class="modal" [ngClass]="{ 'is-active': isModalListActive }">
+    <div class="modal-background" (click)="closeModal()"></div>
     <div class="modal-content">
         <div class="centered-content">
             <div class="modal-box has-background-light">
-                <h1 class="title">Modifica el titulo de tu {{text}}</h1>
+                <h1 class="title">Modifica el titulo de tu {{ text }}</h1>
                 <div class="field is-grouped">
                     <p class="control is-expanded">
-                        <input #listTitleInput class="input is-medium" type="text" placeholder="Ingresa el nuevo titulo">
+                        <input #titleInput class="input is-medium" type="text" placeholder="Ingresa el nuevo titulo" />
                     </p>
                 </div>
-                <br/>
+                <br />
                 <div class="buttons is-right">
-                    <button class="button is-medium" (click)='closeModal()'>Volver</button>
-                    <button class="button is-medium is-primary" (click)='closeModal()'>Modificar</button>
+                    <button class="button is-medium" (click)="closeModal()">
+            Volver
+          </button>
+                    <button class="button is-medium is-primary" (click)="updateTitle(titleInput.value)">
+            Modificar
+          </button>
                 </div>
             </div>
         </div>
