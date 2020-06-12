@@ -8,26 +8,26 @@
                 <div class="dropdown is-hoverable is-pulled-right">
                     <div class="dropdown-trigger">
                         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                        <span class="icon is-small">
-                          <i class="fas fa-cog" aria-hidden="true"></i>
-                        </span>
-                      </button>
+              <span class="icon is-small">
+                <i class="fas fa-cog" aria-hidden="true"></i>
+              </span>
+            </button>
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                         <div class="dropdown-content">
-                            <a class="dropdown-item" (click)='toggleModalList()'>
-                            Editar titulo
-                          </a>
-                            <a class="dropdown-item" (click)='onDeleteListClick()'>
-                            Eliminar lista actual
-                          </a>
+                            <a class="dropdown-item" (click)="toggleModalList()">
+                Editar titulo
+              </a>
+                            <a class="dropdown-item" (click)="onDeleteListClick()">
+                Eliminar lista actual
+              </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="list-menu">
-                <a class="list-menu-item has-icons-right" *ngFor="let list of lists" [routerLink]="['/lists/',list._id]" routerLinkActive="is-active">
-                    <p>{{list.title}}</p>
+                <a class="list-menu-item has-icons-right" *ngFor="let list of lists" [routerLink]="['/lists/', list._id]" routerLinkActive="is-active">
+                    <p>{{ list.title }}</p>
                 </a>
             </div>
 
@@ -44,47 +44,52 @@
                     <div class="dropdown is-hoverable is-pulled-right">
                         <div class="dropdown-trigger">
                             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                            <span>Ordenar tareas</span>
-                            <span class="icon is-small">
-                              <i class="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                          </button>
+                <span>Ordenar tareas</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
                         </div>
                         <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                             <div class="dropdown-content">
                                 <a href="#" class="dropdown-item">
-                                Ascendente
-                              </a>
+                  Ascendente
+                </a>
                                 <a href="#" class="dropdown-item" (click)="onDeleteListClick()">
-                                Descendente
-                              </a>
+                  Descendente
+                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{'completed': task.completed }">
+                <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ completed: task.completed }">
                     <div class="task-text">
-                        <p>{{task.title}}</p>
+                        <p>{{ task.title }}</p>
                     </div>
-                    <span class="tag is-danger is-light is-pulled-right">hace 4 dias</span>
-                    <div class="task-buttons">
-                        <button class="button is-danger is-pulled-right" style="margin-left: 10px;" (click)="onDeleteTaskClick(task._id)">
-                            <span class="icon is-small">
-                                <i class="fas fa-trash" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                        <button class="button is-light is-pulled-right" (click)="toggleModalTask(task._id)">
-                            <span class="icon is-small">
-                                <i class="fas fa-edit" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </div>
+                    <span class="tag is-danger is-light is-pulled-right">hace 4 dias</span
+          >
+          <div class="task-buttons">
+            <button
+              class="button is-danger is-pulled-right"
+              style="margin-left: 10px;"
+              (click)="onDeleteTaskClick(task._id)"
+            >
+              <span class="icon is-small">
+                <i class="fas fa-trash" aria-hidden="true"></i>
+              </span>
+                    </button>
+                    <button class="button is-light is-pulled-right" (click)="toggleModalTask(task._id)">
+              <span class="icon is-small">
+                <i class="fas fa-edit" aria-hidden="true"></i>
+              </span>
+            </button>
                 </div>
-                <button class="button circle-add-button is-primary " [routerLink]="[ './new-task'] " routerLinkActive="router-link-active ">
-                    <img src="../../../assets/img/plus-icon.svg ">
-                </button>
             </div>
+            <button class="button circle-add-button is-primary" [routerLink]="['./new-task']" routerLinkActive="router-link-active ">
+          <img src="../../../assets/img/plus-icon.svg " />
+        </button>
         </div>
     </div>
-    <app-modal-edit [isModalListActive]='isModalListActive' [currentListId]='currentListId' [taskId]='taskId' [text]='textForModal' (closeModalActive)="closeModal($event)" *ngIf="isModalListActive"></app-modal-edit>
+</div>
+<app-modal-edit [isModalListActive]="isModalListActive" [currentListId]="currentListId" [taskId]="taskId" [text]="textForModal" (closeModalActive)="closeModal($event)" *ngIf="isModalListActive"></app-modal-edit>
 </div>

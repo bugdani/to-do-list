@@ -10,10 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewListComponent } from './pages/new-list/new-list.component';
 import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
-
+import { NgpSortModule } from 'ngp-sort-pipe';
 @NgModule({
-  declarations: [AppComponent, ToDoViewComponent, NewListComponent, NewTaskComponent, ModalEditComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    ToDoViewComponent,
+    NewListComponent,
+    NewTaskComponent,
+    ModalEditComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgpSortModule],
   providers: [],
   bootstrap: [AppComponent],
 })
