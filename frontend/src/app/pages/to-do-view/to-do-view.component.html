@@ -1,6 +1,6 @@
 <div class="centered-content">
-    <div class="to-do-view-container">
-        <div class="sidebar has-background-white">
+    <div class="to-do-view-container columns is-variable is-2">
+        <div class="sidebar has-background-white column is-3">
             <div class="top-bar">
                 <h1 class="title has-text-primary">
                     Listas
@@ -35,7 +35,7 @@
         + Nueva lista
       </button>
         </div>
-        <div class="to-do-list-container has-background-light">
+        <div class="to-do-list-container has-background-light column is-9">
             <div>
                 <div class="top-bar">
                     <h1 class="title has-text-primary">
@@ -52,41 +52,63 @@
                         </div>
                         <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                             <div class="dropdown-content">
-                                <a class="dropdown-item" (click)="setOrder('title')">
-                  Ascendente/Descendente
-                </a>
-                                <a class="dropdown-item" (click)="setOrder('dateCreated')">
-                  Fecha
-                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="task" *ngFor="let task of tasks | orderBy: order:reverse" (click)="onTaskClick(task)" [ngClass]="{ completed: task.completed }">
-                    <div class="task-text">
-                        <p>{{ task.title }}</p>
-                    </div>
-                    <span class="tag is-danger is-light is-pulled-right">{{
+                                <a class="dropdown-item" (click)="setOrder('title')">Ascendente/Descendente</a
+                >
+                <a class="dropdown-item" (click)="setOrder('dateCreated')"
+                  >Fecha</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="task"
+          *ngFor="let task of tasks | orderBy: order:reverse"
+          (click)="onTaskClick(task)"
+          [ngClass]="{ completed: task.completed }"
+        >
+          <div class="task-text">
+            <p>{{ task.title }}</p>
+          </div>
+          <span class="tag is-danger is-light is-pulled-right">{{
             task.dateCreated | differenceDays
           }}</span>
-                    <div class="task-buttons">
-                        <button class="button is-danger is-pulled-right" style="margin-left: 10px;" (click)="onDeleteTaskClick(task._id)">
+          <div class="task-buttons">
+            <button
+              class="button is-danger is-pulled-right"
+              style="margin-left: 10px;"
+              (click)="onDeleteTaskClick(task._id)"
+            >
               <span class="icon is-small">
                 <i class="fas fa-trash" aria-hidden="true"></i>
               </span>
             </button>
-                        <button class="button is-light is-pulled-right" (click)="toggleModalTask(task._id)">
+            <button
+              class="button is-light is-pulled-right"
+              (click)="toggleModalTask(task._id)"
+            >
               <span class="icon is-small">
                 <i class="fas fa-edit" aria-hidden="true"></i>
               </span>
             </button>
-                    </div>
-                </div>
-                <button class="button circle-add-button is-primary" [routerLink]="['./new-task']" routerLinkActive="router-link-active ">
+          </div>
+        </div>
+        <button
+          class="button circle-add-button is-primary"
+          [routerLink]="['./new-task']"
+          routerLinkActive="router-link-active "
+        >
           <img src="../../../assets/img/plus-icon.svg " />
         </button>
-            </div>
-        </div>
+      </div>
     </div>
-    <app-modal-edit [isModalListActive]="isModalListActive" [currentListId]="currentListId" [taskId]="taskId" [text]="textForModal" (closeModalActive)="closeModal($event)" *ngIf="isModalListActive"></app-modal-edit>
+  </div>
+  <app-modal-edit
+    [isModalListActive]="isModalListActive"
+    [currentListId]="currentListId"
+    [taskId]="taskId"
+    [text]="textForModal"
+    (closeModalActive)="closeModal($event)"
+    *ngIf="isModalListActive"
+  ></app-modal-edit>
 </div>
