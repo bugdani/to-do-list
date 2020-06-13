@@ -19,7 +19,10 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "fuel": "^0.6.0",
+    "moment": "^2.26.0",
     "ngp-sort-pipe": "0.0.4",
+    "ngx-order-pipe": "^2.0.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

@@ -3,6 +3,7 @@ import { ToDoService } from 'src/app/services/to-do.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
 import { List } from 'src/app/models/list.model';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-to-do-view',
@@ -17,14 +18,16 @@ export class ToDoViewComponent implements OnInit {
   textForModal: string;
   lists: List[];
   tasks: Task[];
+  order: string = 'task.title';
+  reverse: boolean = false;
+  sortedCollection: Task[];
 
   constructor(
     private todoService: ToDoService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
+    private router: Router,
+    private orderPipe: OrderPipe
+  ) {
     this.route.params.subscribe((params: Params) => {
       this.todoService.getTasks(params.listId).subscribe((tasks: Task[]) => {
         this.currentListId = params.listId;
@@ -34,6 +37,23 @@ export class ToDoViewComponent implements OnInit {
     this.todoService.getLists().subscribe((lists: List[]) => {
       this.lists = lists;
     });
+
+    this.sortedCollection = orderPipe.transform(this.tasks, 'title');
+    console.log(this.sortedCollection);
+  }
+
+  ngOnInit() {
+    /*
+    this.route.params.subscribe((params: Params) => {
+      this.todoService.getTasks(params.listId).subscribe((tasks: Task[]) => {
+        this.currentListId = params.listId;
+        this.tasks = tasks;
+      });
+    });
+    this.todoService.getLists().subscribe((lists: List[]) => {
+      this.lists = lists;
+    });
+*/
   }
 
   onTaskClick(task: Task) {
@@ -70,5 +90,14 @@ export class ToDoViewComponent implements OnInit {
 
   closeModal(e: any) {
     this.isModalListActive = e;
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+      console.log('ENTRE A if (this.order === value)');
+      console.log(this.reverse);
+    }
+    this.order = value;
   }
 }

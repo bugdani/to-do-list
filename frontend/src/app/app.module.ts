@@ -11,6 +11,8 @@ import { NewListComponent } from './pages/new-list/new-list.component';
 import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
 import { NgpSortModule } from 'ngp-sort-pipe';
+import { OrderModule } from 'ngx-order-pipe';
+import { DifferenceDaysPipe } from './pipes/difference-days.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,8 +20,15 @@ import { NgpSortModule } from 'ngp-sort-pipe';
     NewListComponent,
     NewTaskComponent,
     ModalEditComponent,
+    DifferenceDaysPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgpSortModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgpSortModule,
+    OrderModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
