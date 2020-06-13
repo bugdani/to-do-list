@@ -39,7 +39,6 @@ export class ToDoViewComponent implements OnInit {
     });
 
     this.sortedCollection = orderPipe.transform(this.tasks, 'title');
-    console.log(this.sortedCollection);
   }
 
   ngOnInit() {
@@ -95,8 +94,6 @@ export class ToDoViewComponent implements OnInit {
   setOrder(value: string) {
     if (this.order === value) {
       this.reverse = !this.reverse;
-      console.log('ENTRE A if (this.order === value)');
-      console.log(this.reverse);
     }
     this.order = value;
   }
