@@ -12,7 +12,7 @@
                     <h1 class="title has-text-primary">
                         Listas
                     </h1>
-                    <div class="dropdown is-hoverable is-pulled-right">
+                    <div class="dropdown is-hoverable is-pulled-right is-right">
                         <div class="dropdown-trigger">
                             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                 <span class="icon is-small">
@@ -37,7 +37,7 @@
                         <p>{{ list.title }}</p>
                     </a>
                 </div>
-                <button class="button is-primary has-text-white" [routerLink]="['/new-list']" routerLinkActive="router-link-active">
+                <button class="button new-list-button is-primary has-text-white" [routerLink]="['/new-list']" routerLinkActive="router-link-active">
           + Nueva lista
         </button>
             </mat-nav-list>
