@@ -1,4 +1,136 @@
-<div class="centered-content">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+        <h1 class="example-app-name">Responsive App</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+            <mat-nav-list>
+                <div class="list-menu">
+                    <div class="top-bar">
+                        <h1 class="title has-text-primary">
+                            Listas
+                        </h1>
+                        <div class="dropdown is-hoverable is-pulled-right">
+                            <div class="dropdown-trigger">
+                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                  <span class="icon is-small">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                  </span>
+                </button>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                <div class="dropdown-content">
+                                    <a class="dropdown-item" (click)="toggleModalList()">
+                    Editar titulo
+                  </a>
+                                    <a class="dropdown-item" (click)="onDeleteListClick()">
+                    Eliminar lista actual
+                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="list-menu-item has-icons-right" *ngFor="let list of lists | sortBy: 'desc':'title'" [routerLink]="['/lists/', list._id]" routerLinkActive="is-active">
+                        <p>{{ list.title }}</p>
+                    </a>
+                </div>
+                <button class="button is-primary has-text-white" [routerLink]="['/new-list']" routerLinkActive="router-link-active">
+          + Nueva lista
+        </button>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="centered-content">
+                <div class="to-do-view-container">
+                    <div class="to-do-list-container has-background-light">
+                        <div>
+                            <div class="top-bar">
+                                <h1 class="title has-text-primary">
+                                    Tareas
+                                </h1>
+                                <div class="dropdown is-hoverable is-pulled-right">
+                                    <div class="dropdown-trigger">
+                                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                      <span>Ordenar tareas</span>
+                      <span class="icon is-small">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                                    </div>
+                                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                        <div class="dropdown-content">
+                                            <a class="dropdown-item" (click)="setOrder('title')">Ascendente/Descendente</a
+                      >
+                      <a class="dropdown-item" (click)="setOrder('dateCreated')"
+                        >Fecha</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="listTask">
+                <div
+                  class="task"
+                  *ngFor="let task of tasks | orderBy: order:reverse"
+                  (click)="onTaskClick(task)"
+                  [ngClass]="{ completed: task.completed }"
+                >
+                  <div class="task-text">
+                    <p>{{ task.title }}</p>
+                  </div>
+                  <span class="tag is-danger is-light is-pulled-right">{{
+                    task.dateCreated | differenceDays
+                  }}</span>
+                  <div class="task-buttons">
+                    <button
+                      class="button is-danger is-pulled-right"
+                      style="margin-left: 10px;"
+                      (click)="onDeleteTaskClick(task._id)"
+                    >
+                      <span class="icon is-small">
+                        <i class="fas fa-trash" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                    <button
+                      class="button is-light is-pulled-right"
+                      (click)="toggleModalTask(task._id)"
+                    >
+                      <span class="icon is-small">
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="button circle-add-button is-primary"
+                [routerLink]="['./new-task']"
+                routerLinkActive="router-link-active "
+              >
+                <img src="../../../assets/img/plus-icon.svg " />
+              </button>
+            </div>
+          </div>
+        </div>
+        <app-modal-edit
+          [isModalListActive]="isModalListActive"
+          [currentListId]="currentListId"
+          [taskId]="taskId"
+          [text]="textForModal"
+          (closeModalActive)="closeModal($event)"
+          *ngIf="isModalListActive"
+        ></app-modal-edit>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- <div class="centered-content">
     <div class="to-do-view-container">
         <div class="sidebar has-background-white">
             <div class="top-bar">
@@ -18,41 +150,41 @@
                             <a class="dropdown-item" (click)="toggleModalList()">
                 Editar titulo
               </a>
-                            <a class="dropdown-item" (click)="onDeleteListClick()">
+                                            <a class="dropdown-item" (click)="onDeleteListClick()">
                 Eliminar lista actual
               </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="list-menu">
-                <a class="list-menu-item has-icons-right" *ngFor="let list of lists | sortBy: 'desc':'title'" [routerLink]="['/lists/', list._id]" routerLinkActive="is-active">
-                    <p>{{ list.title }}</p>
-                </a>
-            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-menu">
+                                <a class="list-menu-item has-icons-right" *ngFor="let list of lists | sortBy: 'desc':'title'" [routerLink]="['/lists/', list._id]" routerLinkActive="is-active">
+                                    <p>{{ list.title }}</p>
+                                </a>
+                            </div>
 
-            <button class="button is-primary has-text-white" [routerLink]="['/new-list']" routerLinkActive="router-link-active">
+                            <button class="button is-primary has-text-white" [routerLink]="['/new-list']" routerLinkActive="router-link-active">
         + Nueva lista
       </button>
-        </div>
-        <div class="to-do-list-container has-background-light">
-            <div>
-                <div class="top-bar">
-                    <h1 class="title has-text-primary">
-                        Tareas
-                    </h1>
-                    <div class="dropdown is-hoverable is-pulled-right">
-                        <div class="dropdown-trigger">
-                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        </div>
+                        <div class="to-do-list-container has-background-light">
+                            <div>
+                                <div class="top-bar">
+                                    <h1 class="title has-text-primary">
+                                        Tareas
+                                    </h1>
+                                    <div class="dropdown is-hoverable is-pulled-right">
+                                        <div class="dropdown-trigger">
+                                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                 <span>Ordenar tareas</span>
                 <span class="icon is-small">
                   <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
               </button>
-                        </div>
-                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                            <div class="dropdown-content">
-                                <a class="dropdown-item" (click)="setOrder('title')">Ascendente/Descendente</a
+                                        </div>
+                                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                            <div class="dropdown-content">
+                                                <a class="dropdown-item" (click)="setOrder('title')">Ascendente/Descendente</a
                 >
                 <a class="dropdown-item" (click)="setOrder('dateCreated')"
                   >Fecha</a
@@ -113,4 +245,4 @@
     (closeModalActive)="closeModal($event)"
     *ngIf="isModalListActive"
   ></app-modal-edit>
-</div>
+</div> -->

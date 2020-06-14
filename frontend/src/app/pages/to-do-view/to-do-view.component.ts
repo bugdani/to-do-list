@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { ToDoService } from 'src/app/services/to-do.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
@@ -10,7 +11,7 @@ import { OrderPipe } from 'ngx-order-pipe';
   templateUrl: './to-do-view.component.html',
   styleUrls: ['./to-do-view.component.scss'],
 })
-export class ToDoViewComponent implements OnInit {
+export class ToDoViewComponent implements OnInit, OnDestroy {
   currentListId: string;
   taskId: string;
   isModalListActive: boolean = false;
@@ -22,28 +23,23 @@ export class ToDoViewComponent implements OnInit {
   reverse: boolean = false;
   sortedCollection: Task[];
 
-  _opened: boolean = false;
-  _modeNum: number = 0;
-  _positionNum: number = 0;
-  _dock: boolean = false;
-  _closeOnClickOutside: boolean = false;
-  _closeOnClickBackdrop: boolean = false;
-  _showBackdrop: boolean = false;
-  _animate: boolean = true;
-  _trapFocus: boolean = true;
-  _autoFocus: boolean = true;
-  _keyClose: boolean = false;
-  _autoCollapseHeight: number = null;
-  _autoCollapseWidth: number = null;
-
   _MODES: Array<string> = ['over', 'push', 'slide'];
   _POSITIONS: Array<string> = ['left', 'right', 'top', 'bottom'];
+
+  //navbar con material
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+  fillerNav = Array.from({ length: 3 }, (_, i) => `Nav Item ${i + 1}`);
+
+  fillerContent = Array.from({ length: 1 }, () => `Lorem ipsum dolor s.`);
 
   constructor(
     private todoService: ToDoService,
     private route: ActivatedRoute,
     private router: Router,
-    private orderPipe: OrderPipe
+    private orderPipe: OrderPipe,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
   ) {
     this.route.params.subscribe((params: Params) => {
       this.todoService.getTasks(params.listId).subscribe((tasks: Task[]) => {
@@ -56,22 +52,17 @@ export class ToDoViewComponent implements OnInit {
     });
 
     this.sortedCollection = orderPipe.transform(this.tasks, 'title');
+
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   ngOnInit() {}
-
-  //Sidebar
-  _toggleOpened(): void {
-    this._opened = !this._opened;
-  }
-
-  _toggleAutoCollapseHeight(): void {
-    this._autoCollapseHeight = this._autoCollapseHeight ? null : 500;
-  }
-
-  _toggleAutoCollapseWidth(): void {
-    this._autoCollapseWidth = this._autoCollapseWidth ? null : 500;
-  }
 
   //Listas y tareas
   onTaskClick(task: Task) {
