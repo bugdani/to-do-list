@@ -1,39 +1,38 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
+<div [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary">
         <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-        <h1 class="example-app-name">Responsive App</h1>
     </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
             <mat-nav-list>
-                <div class="list-menu">
-                    <div class="top-bar">
-                        <h1 class="title has-text-primary">
-                            Listas
-                        </h1>
-                        <div class="dropdown is-hoverable is-pulled-right">
-                            <div class="dropdown-trigger">
-                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                  <span class="icon is-small">
-                    <i class="fas fa-cog" aria-hidden="true"></i>
-                  </span>
-                </button>
-                            </div>
-                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                                <div class="dropdown-content">
-                                    <a class="dropdown-item" (click)="toggleModalList()">
-                    Editar titulo
-                  </a>
-                                    <a class="dropdown-item" (click)="onDeleteListClick()">
-                    Eliminar lista actual
-                  </a>
-                                </div>
+                <div class="top-bar">
+                    <h1 class="title has-text-primary">
+                        Listas
+                    </h1>
+                    <div class="dropdown is-hoverable is-pulled-right">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                <span class="icon is-small">
+                  <i class="fas fa-cog" aria-hidden="true"></i>
+                </span>
+              </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                            <div class="dropdown-content">
+                                <a class="dropdown-item" (click)="toggleModalList()">
+                  Editar titulo
+                </a>
+                                <a class="dropdown-item" (click)="onDeleteListClick()">
+                  Eliminar lista actual
+                </a>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="list-menu">
                     <a class="list-menu-item has-icons-right" *ngFor="let list of lists | sortBy: 'desc':'title'" [routerLink]="['/lists/', list._id]" routerLinkActive="is-active">
                         <p>{{ list.title }}</p>
                     </a>

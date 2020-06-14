@@ -24,8 +24,7 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 42px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-radius: 8px;
     .listTask {
         overflow-y: scroll;
         height: 470px;
@@ -119,4 +118,17 @@
     width: 50px;
     background: $primary;
     border-radius: 50%;
+}
+
+.mat-drawer-container {
+    background: none;
+}
+
+.mat-toolbar.mat-primary {
+    background: none;
+}
+
+.mat-drawer {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }

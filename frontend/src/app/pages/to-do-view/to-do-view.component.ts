@@ -23,16 +23,9 @@ export class ToDoViewComponent implements OnInit, OnDestroy {
   reverse: boolean = false;
   sortedCollection: Task[];
 
-  _MODES: Array<string> = ['over', 'push', 'slide'];
-  _POSITIONS: Array<string> = ['left', 'right', 'top', 'bottom'];
-
   //navbar con material
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  fillerNav = Array.from({ length: 3 }, (_, i) => `Nav Item ${i + 1}`);
-
-  fillerContent = Array.from({ length: 1 }, () => `Lorem ipsum dolor s.`);
-
   constructor(
     private todoService: ToDoService,
     private route: ActivatedRoute,
