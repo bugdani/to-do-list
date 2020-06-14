@@ -13,6 +13,8 @@ import { ModalEditComponent } from './components/modal-edit/modal-edit.component
 import { NgpSortModule } from 'ngp-sort-pipe';
 import { OrderModule } from 'ngx-order-pipe';
 import { DifferenceDaysPipe } from './pipes/difference-days.pipe';
+import { SidebarModule } from 'ng-sidebar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { DifferenceDaysPipe } from './pipes/difference-days.pipe';
     HttpClientModule,
     NgpSortModule,
     OrderModule,
+    SidebarModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

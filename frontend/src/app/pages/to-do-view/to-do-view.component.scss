@@ -26,6 +26,11 @@
     padding: 42px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    .listTask {
+        overflow-y: scroll;
+        height: 470px;
+        margin-bottom: 30px;
+    }
 }
 
 .top-bar {
@@ -50,6 +55,9 @@
     flex-direction: column;
     margin-top: 15px;
     flex-grow: 1;
+    overflow-y: scroll;
+    height: 500px;
+    margin-bottom: 30px;
     .list-menu-item {
         display: flex;
         align-items: center;

@@ -22,6 +22,23 @@ export class ToDoViewComponent implements OnInit {
   reverse: boolean = false;
   sortedCollection: Task[];
 
+  _opened: boolean = false;
+  _modeNum: number = 0;
+  _positionNum: number = 0;
+  _dock: boolean = false;
+  _closeOnClickOutside: boolean = false;
+  _closeOnClickBackdrop: boolean = false;
+  _showBackdrop: boolean = false;
+  _animate: boolean = true;
+  _trapFocus: boolean = true;
+  _autoFocus: boolean = true;
+  _keyClose: boolean = false;
+  _autoCollapseHeight: number = null;
+  _autoCollapseWidth: number = null;
+
+  _MODES: Array<string> = ['over', 'push', 'slide'];
+  _POSITIONS: Array<string> = ['left', 'right', 'top', 'bottom'];
+
   constructor(
     private todoService: ToDoService,
     private route: ActivatedRoute,
@@ -41,20 +58,22 @@ export class ToDoViewComponent implements OnInit {
     this.sortedCollection = orderPipe.transform(this.tasks, 'title');
   }
 
-  ngOnInit() {
-    /*
-    this.route.params.subscribe((params: Params) => {
-      this.todoService.getTasks(params.listId).subscribe((tasks: Task[]) => {
-        this.currentListId = params.listId;
-        this.tasks = tasks;
-      });
-    });
-    this.todoService.getLists().subscribe((lists: List[]) => {
-      this.lists = lists;
-    });
-*/
+  ngOnInit() {}
+
+  //Sidebar
+  _toggleOpened(): void {
+    this._opened = !this._opened;
   }
 
+  _toggleAutoCollapseHeight(): void {
+    this._autoCollapseHeight = this._autoCollapseHeight ? null : 500;
+  }
+
+  _toggleAutoCollapseWidth(): void {
+    this._autoCollapseWidth = this._autoCollapseWidth ? null : 500;
+  }
+
+  //Listas y tareas
   onTaskClick(task: Task) {
     this.todoService.complete(task).subscribe((response) => {
       task.completed = !task.completed;
@@ -65,7 +84,6 @@ export class ToDoViewComponent implements OnInit {
     this.todoService
       .deleteTask(this.currentListId, taskId)
       .subscribe((res: any) => {
-        //this.router.navigate(['/lists', this.currentListId]);
         this.tasks = this.tasks.filter((val) => val._id !== taskId);
       });
   }
