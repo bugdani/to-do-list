@@ -15,7 +15,6 @@ export class ToDoViewComponent implements OnInit, OnDestroy {
   currentListId: string;
   taskId: string;
   isModalListActive: boolean = false;
-  isModalTaskActive: boolean = false;
   textForModal: string;
   lists: List[];
   tasks: Task[];
