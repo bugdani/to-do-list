@@ -24,14 +24,20 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 42px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-radius: 8px;
+    .listTask {
+        overflow-y: scroll;
+        height: 470px;
+        margin-bottom: 100px;
+    }
 }
 
 .top-bar {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
     .title {
         flex-grow: 1;
         margin: 0;
@@ -50,6 +56,11 @@
     flex-direction: column;
     margin-top: 15px;
     flex-grow: 1;
+    overflow-y: scroll;
+    height: 500px;
+    margin-bottom: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
     .list-menu-item {
         display: flex;
         align-items: center;
@@ -111,4 +122,25 @@
     width: 50px;
     background: $primary;
     border-radius: 50%;
+}
+
+.mat-drawer-container {
+    background: none;
+}
+
+.mat-toolbar.mat-primary {
+    background: none;
+}
+
+.mat-drawer {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.mat-list-base {
+    padding-top: 40px;
+}
+
+.new-list-button {
+    margin-left: 25%;
 }
